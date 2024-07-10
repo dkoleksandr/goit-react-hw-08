@@ -5,7 +5,7 @@ import {
   selectErrorList,
   selectFilteredContactsList,
   selectLoadingList,
-} from "../../redux/constants";
+} from "../../redux/contacts/selectors";
 import Loader from "../Loader/Loader";
 
 const ContactList = () => {
@@ -17,7 +17,7 @@ const ContactList = () => {
     <>
       {isLoading && <Loader />}
       {error && <h2>{error}</h2>}
-      <ul>
+      <ul className={css.list}>
         {filteredList.map((contact) => {
           return (
             <li key={contact.id} className={css.listCard}>

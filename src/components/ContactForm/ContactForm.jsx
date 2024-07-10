@@ -3,8 +3,7 @@ import css from "./ContactForm.module.css";
 import { useId } from "react";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().min(3, "Min 3").max(50, "max 50").required("Required"),
@@ -31,10 +30,15 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <Form className={css.formStyle}>
-        <div className={css.inputWrapper}>
+      <Form className={css.form}>
+        <div className={css.wrapper}>
           <label htmlFor={nameFieldId}>Name</label>
-          <Field type="text" name="name" id={nameFieldId}></Field>
+          <Field
+            className={css.input}
+            type="text"
+            name="name"
+            id={nameFieldId}
+          ></Field>
 
           <ErrorMessage
             className={css.validationMessage}
@@ -42,9 +46,14 @@ const ContactForm = () => {
             component="span"
           />
         </div>
-        <div className={css.inputWrapper}>
+        <div className={css.wrapper}>
           <label htmlFor={phoneFieldId}>Number</label>
-          <Field type="text" name="number" id={phoneFieldId}></Field>
+          <Field
+            className={css.input}
+            type="text"
+            name="number"
+            id={phoneFieldId}
+          ></Field>
 
           <ErrorMessage
             className={css.validationMessage}
@@ -52,7 +61,9 @@ const ContactForm = () => {
             component="span"
           />
         </div>
-        <button type="submit">Add contact</button>
+        <button className={css.button} type="submit">
+          Add contact
+        </button>
       </Form>
     </Formik>
   );
